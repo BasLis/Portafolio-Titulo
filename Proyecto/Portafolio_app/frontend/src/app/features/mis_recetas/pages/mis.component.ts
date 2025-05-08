@@ -6,6 +6,8 @@ import { TabMenuComponent } from 'src/app/layout/tab-menu/page/tab-menu.componen
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MisRecetasService } from 'src/app/core/services/mis-recetas.service';
+import { RecetaModalComponent } from 'src/app/layout/RecetaModal/page/receta-modal.component'; // Asegúrate de que esta ruta es correcta
+
 
 @Component({
   selector: 'app-mis',
@@ -16,7 +18,8 @@ import { MisRecetasService } from 'src/app/core/services/mis-recetas.service';
     CommonModule,
     IonicModule,
     FormsModule,
-    TabMenuComponent
+    TabMenuComponent,
+    RecetaModalComponent
   ]
 })
 export class MisComponent implements OnInit {
@@ -91,8 +94,9 @@ export class MisComponent implements OnInit {
   }
 
   async abrirModalReceta(receta: any) {
+    console.log('Click detectado:', receta);
     const modal = await this.modalCtrl.create({
-      component: 'RecetaModalComponent', // Reemplaza con el nombre de tu componente modal
+      component: RecetaModalComponent,
       componentProps: {
         receta: receta
       }
@@ -100,5 +104,19 @@ export class MisComponent implements OnInit {
     await modal.present();
   }
 
+
+  handleCardClick(event: MouseEvent, receta: any) {
+    const target = event.target as HTMLElement;
+  
+    if (target.closest('ion-button')) {
+      return; // Evita abrir el modal si se hizo clic en un botón
+    }
+  
+    this.abrirModalReceta(receta);
+  }
+  
+
 }
+
+
 

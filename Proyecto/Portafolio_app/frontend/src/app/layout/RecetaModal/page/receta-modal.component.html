@@ -1,3 +1,15 @@
-<p>
-  receta-modal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ receta?.nombre_receta }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p><strong>Tiempo de preparación:</strong> {{ receta?.tiempo }}</p>
+  <p><strong>Descripción:</strong> {{ receta?.descripcion }}</p>
+</ion-content>

@@ -6,7 +6,7 @@
 
 <ion-content class="ion-padding">
 
-  <div *ngFor="let receta of misRecetas" class="receta-card" (click)="abrirModalReceta(receta)">
+  <div *ngFor="let receta of misRecetas" class="receta-card" (click)="handleCardClick($event, receta)">
     <div class="receta-contenido">
     <!--<img [src]="receta.imagen" alt="Imagen de la receta" class="receta-img" />-->
 
